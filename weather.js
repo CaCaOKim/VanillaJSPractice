@@ -16,7 +16,7 @@ function handleGeoSucces(poisition) {
         latitude,
         longitude
     };
-    sabeCoords(coordsObj);
+    saveCoords(coordsObj);
     getWeather(latitude, longitude)
 }
 
@@ -29,11 +29,12 @@ function askForCoords() {
 }
 
 function loadCoords(){
-    const loadedCords = localStorage.getItem(COORDS);
-    if(loadedCords === null) {
+    const loadedCoords = localStorage.getItem(COORDS);
+    if(loadedCoords === null) {
         askForCoords();
     } else {
-        // getWeather
+        const parsedCoords = JSON.parse(loadedCoors);
+        getWeather(parsedCoords.latitude, parsedCoords.longitude);
     }
 }
 
